@@ -9,8 +9,7 @@ from .managers import CustomUserManager
 
 
 class User(AbstractUser):
-    # inherits attributes and methods from default django User
-    # custom
+    # custom User model that inherits attributes and methods from default django User model
     email = models.EmailField(
         _('email address'), unique=True,
         help_text=_("Only UCA accounts allowed"),

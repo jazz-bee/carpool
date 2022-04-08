@@ -133,7 +133,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 # use UTC if multiple timezones will be used
-TIME_ZONE = 'America/Argentina/Buenos_Aires'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

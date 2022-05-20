@@ -42,6 +42,8 @@ class User(AbstractUser):
     class Meta:
         # rename DB table
         db_table = 'user'
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'
 
     def __str__(self):
         return self.email

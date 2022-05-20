@@ -28,7 +28,6 @@ class Vehicle(models.Model):
 
 
 class HovLane(models.Model):
-<<<<<<< HEAD
     name = models.CharField(max_length=100, verbose_name="Nombre")
     is_enabled = models.BooleanField(default=False, verbose_name="Habilitado")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado")
@@ -62,26 +61,3 @@ class HovMilestone(models.Model):
 
     def __str__(self):
         return self.name
-=======
-    name = models.CharField(max_length=100)
-    is_enabled = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'HovLane'
-
-
-class HovMilestone(models.Model):
-    name = models.CharField(max_length=100)
-    id_HovLane = models.ForeignKey(
-        "HovLane", on_delete=models.CASCADE, db_column='id_HovLane')
-    location = models.CharField(max_length=200)
-
-    is_enabled = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'HovMilestone'
->>>>>>> 7e9c62f62d58a7edfe8d5f4bf6f611d0cf9d69e4

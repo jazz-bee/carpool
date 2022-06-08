@@ -9,12 +9,13 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR points to top hierarchy of project (i.e. carpool)
+# Watever paths we define in project are all relative to BASE_DIR
+# Build paths  like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -22,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-5293-_2-mp_r$)-(*%$%zd=nrrh2v1f_l*khq68mna9jj7nq5#'
 
+# Django's inbuild Debugger
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -76,10 +78,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'context_processors.cfg_assets_root',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -146,14 +150,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# STATIC_ROOT is useless during development, but required for deployment
+# should be empty before running collectstatic
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+# STATIC_URL is relative path to BASE_DIR. It's the prefix or url prepended for static files
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# by default, Django doesn't recognize '/myProject/static/' so it must be added here
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+# Static Assets Management Volt
+# used with context_processors.py
+ASSETS_ROOT = 'static/assets'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
